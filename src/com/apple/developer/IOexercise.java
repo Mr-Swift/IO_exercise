@@ -12,23 +12,18 @@ public class IOexercise {
         String num=null;
         String type=null;
         double time=0;
+        BufferedReader bufferedReader=null;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            bufferedReader = new BufferedReader(new FileReader(file));
             String line=null;
             int lineNo=0;
             while ((line= bufferedReader.readLine())!=null && lineNo<15){
                 lineNo++;
-//                System.out.println(line);
                 if(lineNo>=3){
                     String[] split=line.split("\\|");
-//                    for(String str:split){
-//                        System.out.print(str+"---");
-//                    }
-//                    System.out.println();
                     num=split[0];
                     type=split[2];
                     time=Integer.valueOf(split[3]);
-                    //System.out.println(num+" "+type+" "+time);
                     if(!map.containsKey(num)){
                         map.put(num,new PhoneNumber(num,0));
                     }else {
@@ -55,6 +50,14 @@ public class IOexercise {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(bufferedReader!=null){
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
