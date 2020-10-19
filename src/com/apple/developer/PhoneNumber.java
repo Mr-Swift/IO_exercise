@@ -1,5 +1,5 @@
 package com.apple.developer;
-
+@SuppressWarnings("all")
 public class PhoneNumber {
     private String num;
     private double money;
